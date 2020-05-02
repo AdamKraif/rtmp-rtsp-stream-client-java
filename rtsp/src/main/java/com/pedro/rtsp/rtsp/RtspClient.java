@@ -144,13 +144,13 @@ public class RtspClient {
               connectionSocket = new Socket();
               SocketAddress socketAddress =
                   new InetSocketAddress(commandsManager.getHost(), commandsManager.getPort());
-              connectionSocket.connect(socketAddress, 5000);
+              connectionSocket.connect(socketAddress, 30000);
             } else {
               connectionSocket = CreateSSLSocket.createSSlSocket(commandsManager.getHost(),
                   commandsManager.getPort());
               if (connectionSocket == null) throw new IOException("Socket creation failed");
             }
-            connectionSocket.setSoTimeout(5000);
+            connectionSocket.setSoTimeout(30000);
             reader = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
             outputStream = connectionSocket.getOutputStream();
             writer = new BufferedWriter(new OutputStreamWriter(outputStream));
@@ -171,7 +171,7 @@ public class RtspClient {
                 connectCheckerRtsp.onAuthErrorRtsp();
                 return;
               } else {
-                writer.write(commandsManager.createAnnounceWithAuth(response));
+//                 writer.write(commandsManager.createAnnounceWithAuth(response));
                 writer.flush();
                 int statusAuth = commandsManager.getResponseStatus(
                     commandsManager.getResponse(reader, connectCheckerRtsp, false, false));
