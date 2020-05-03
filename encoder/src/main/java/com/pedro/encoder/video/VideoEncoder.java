@@ -432,8 +432,8 @@ public class VideoEncoder extends BaseEncoder implements GetCameraData {
       buffer = isYV12 ? YUVUtil.rotateYV12(buffer, width, height, orientation)
           : YUVUtil.rotateNV21(buffer, width, height, orientation);
     }
-    buffer = isYV12 ? YUVUtil.YV12toYUV420byColor(buffer, width, height, formatVideoEncoder)
-        : YUVUtil.NV21toYUV420byColor(buffer, width, height, formatVideoEncoder);
+//     buffer = isYV12 ? YUVUtil.YV12toYUV420byColor(buffer, width, height, formatVideoEncoder)
+//         : YUVUtil.NV21toYUV420byColor(buffer, width, height, formatVideoEncoder);
     frame.setBuffer(buffer);
     return frame;
   }
